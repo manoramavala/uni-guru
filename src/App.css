@@ -1,0 +1,321 @@
+/* General Styles */
+* {
+  z-index: 10;
+}
+
+.navigation-bar-wrapper{ 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns children to the left */
+  padding-left: 20px; 
+}
+
+
+.navigation-bar {
+  height: 100px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+label.logo{
+  display: flex;
+  align-items: center; /* Align image and text horizontally */
+}
+
+.uni-img {
+  width: 11%; /* Adjust size as needed */
+  height: auto;
+   /* Add spacing between image and Uniguru text */
+}
+
+.Uniguru{
+  font-size: 28px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 700;
+  color: #FFB800;
+}
+
+.nav-btn {
+  position: absolute;
+  right: 50px;
+}
+
+.nav-login-btn, .nav-Signup-btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .navigation-bar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+}
+
+/* Header and Title */
+
+
+
+.Uniguru {
+  font-size: 28px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 700;
+  color: #FFB800;
+}
+
+/* Main content styling for centering */
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+/* Centering Welcome Section */
+ 
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 450px;
+  padding: 20px;
+} 
+
+/* .welcome-container {
+  position: absolute;
+  left: 80px; 
+  top: [desired top position];
+} */
+
+
+
+.welcome {
+  font-size: 30px;
+  font-family: 'Inka';
+  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1, #9791DB, #74BDCC, #59D2BF);
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 10px; /* Space below the welcome message */
+}
+
+/* Centered and Wrapped Welcome Paragraph */
+.welcomepara {
+  color: white;
+  line-height: 1.6;
+  text-align: center;
+  margin: 10px;
+  max-width: 400px;
+}
+
+/* Button Section */
+.letchat-button {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  align-items: center; /* Center the button vertically */
+  color: rgb(38, 38, 38);
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1, #9791DB, #74BDCC, #59D2BF);
+  border-radius: 50px;
+  font-family: 'Inka';
+  font-size: 17px;
+  margin-top: 20px;
+}
+
+
+/* Login Box */
+.login-box {
+  position: absolute;
+  top: 50%;
+  right: 300px;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1, #9791DB, #74BDCC, #59D2BF);
+  color: white;
+  width: 350px;
+  height: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .login-box {
+    width: 250px;
+    right: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-box {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: translateY(0);
+    margin: 20px auto;
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+.login-box p{
+ color:black;
+}
+
+.login-box .input-box{
+  width: 100%;
+  height: 50px;
+  margin: 30px 0px;
+}
+
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  margin: 30px 0px;
+  border: none;
+  outline: none;
+  border: 2px solid  black;
+  border-radius: 50px;
+  font-size: 16px;
+  color: white;
+  padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder{
+  color: white;
+}
+
+.login-box .forget{
+  font-size: 14.5px;
+  margin: 15px 0 15px;
+}
+
+.forget label input{
+  accent-color: white;
+  text-decoration: none;
+}
+
+.forget a{
+  color: white;
+  text-decoration: none;
+}
+
+.forget a:hover{
+  text-decoration: underline;
+}
+
+.login-box .log-box-btn{
+  width: 100%;
+  height: 45px;
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  color: black;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.login-box .log-signup-link{
+  font-size: 14.5px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.log-signup-link p a{
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.log-signup-link p a:hover{
+  text-decoration: underline;
+}
+
+/* sign up box */
+
+.signup-box {
+  position: absolute;
+  top: 50%;
+  right: 300px;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1, #9791DB, #74BDCC, #59D2BF);
+  color: white;
+  width: 350px;
+  height: 450px;
+  padding: 20px;
+  border-radius: 10px;
+  
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .signup-box {
+    width: 250px;
+    right: 10px;
+    padding: 15px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .signup-box {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: translateY(0);
+    margin: 20px auto;
+    width: 90%;
+    padding: 15px;
+  }
+}
+
+.signup-box p{
+  color:black;
+ }
+
+.signup-box .input-box{
+  width: 100%;
+  height: 50px;
+  margin: 30px 0px;
+} 
+
+.signup-box .sign-box-btn{
+  width: 100%;
+  height: 45px;
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  color: black;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 30px 0px;
+}
+
+/* Footer */
+.footer {
+  position: absolute; /* Fixed at the bottom-right */
+  bottom: 20px; /* Same as margin-bottom */
+  right: 20px; /* Same as margin-right */
+}
+
+.bhi-logo {
+  width: 80px; /* Adjust size as needed */
+  height: auto;
+}
