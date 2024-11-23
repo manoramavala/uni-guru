@@ -3,7 +3,8 @@ import React from "react";
 const Signupbox: React.FC = () => {
   return(
     <div className="signup-box">
-      <p
+      <form>
+      <label
         style={{
           textAlign: "left",
           fontFamily: "inder",
@@ -13,7 +14,7 @@ const Signupbox: React.FC = () => {
         }}
       >
         Sign up
-      </p>
+      </label>
 
       <div className="input-box">
         <input type="text" placeholder="Name" required />
@@ -40,7 +41,7 @@ const Signupbox: React.FC = () => {
       </button>
 
       <p style={{textAlign:'center'}}>or</p>
-
+      </form>   
     </div>
   )
 }

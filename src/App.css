@@ -1,321 +1,239 @@
-/* General Styles */
+/* General Reset */
 * {
-  z-index: 10;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.navigation-bar-wrapper{ 
+/* General Styles */
+
+/* .body {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Aligns children to the left */
-  padding-left: 20px; 
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #1B0725;
+  font-family: 'Inder', sans-serif;
+  color: #fff;
+} */
+
+/* Navigation Bar */
+/* Navigation Bar Wrapper */
+.navigation-bar-wrapper {
+  position: fixed; /* Ensures it stays at the top */
+  top: 0;
+  width: 100%; /* Spans the full width */
+  height: 80px; /* Fixed height */
+  z-index: 1000; /* Stays above all content */
+  background-color: #1B0725; /* Matches your theme */
 }
 
 
 .navigation-bar {
-  height: 100px;
-  padding: 0 20px;
+  height: 80px; /* Reduced height */
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: white;
 }
 
-label.logo{
+.logo {
   display: flex;
-  align-items: center; /* Align image and text horizontally */
+  align-items: center;
+  
 }
 
 .uni-img {
-  width: 11%; /* Adjust size as needed */
+  width: 65px;
   height: auto;
-   /* Add spacing between image and Uniguru text */
+  margin-right: 10px;
 }
 
-.Uniguru{
-  font-size: 28px;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 700;
-  color: #FFB800;
-}
+
+/* }
+.Uniguru {
+  font-size: 1.8rem;
+  font-family: 'Inka', sans-serif;
+  background: linear-gradient(135deg, #896700, #ffbf00, #896700);
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+} */
 
 .nav-btn {
-  position: absolute;
-  right: 50px;
+  display: flex;
+  gap: 15px;
 }
 
 .nav-login-btn, .nav-Signup-btn {
   padding: 10px 20px;
+  border: none;
   background-color: transparent;
   color: white;
-  cursor: pointer;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .navigation-bar {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
-  }
-
-  .logo {
-    margin-bottom: 10px;
-  }
+.nav-login-btn:hover, .nav-Signup-btn:hover {
+  background: white;
+  color: black;
 }
 
-/* Header and Title */
-
-
-
-.Uniguru {
-  font-size: 28px;
-  font-family: 'Lexend', sans-serif;
-  font-weight: 700;
-  color: #FFB800;
-}
-
-/* Main content styling for centering */
+/* Main Content */
 .main-content {
+  margin-top: 100px; /* Push content below navigation bar */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 80vh;
+  text-align: center;
+  z-index: 10;
+  overflow :visible
 }
 
-/* Centering Welcome Section */
- 
 .welcome-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 450px;
-  padding: 20px;
-} 
-
-/* .welcome-container {
-  position: absolute;
-  left: 80px; 
-  top: [desired top position];
-} */
-
-
-
-.welcome {
-  font-size: 30px;
-  font-family: 'Inka';
-  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1, #9791DB, #74BDCC, #59D2BF);
-  background-clip: text;
-  color: transparent;
-  margin-bottom: 10px; /* Space below the welcome message */
+  
 }
 
-/* Centered and Wrapped Welcome Paragraph */
+.welcome {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1);
+  background-clip: text;
+  color: transparent;
+  font-family: 'Inknut Antiqua';
+}
+
 .welcomepara {
-  color: white;
-  line-height: 1.6;
-  text-align: center;
-  margin: 10px;
+  margin: 15px 0;
+  line-height: 1.5;
+  color: #ffffff;
   max-width: 400px;
 }
 
-/* Button Section */
 .letchat-button {
-  display: flex;
-  justify-content: center; /* Center the button horizontally */
-  align-items: center; /* Center the button vertically */
-  color: rgb(38, 38, 38);
   padding: 10px 20px;
-  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1, #9791DB, #74BDCC, #59D2BF);
+  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1);
   border-radius: 50px;
-  font-family: 'Inka';
-  font-size: 17px;
-  margin-top: 20px;
+  color: #262626;
+  font-size: 1rem;
+  z-index: 5;
+  font-family: 'Inknut Antiqua';
 }
-
 
 /* Login Box */
 .login-box {
   position: absolute;
-  top: 50%;
-  right: 300px;
-  transform: translateY(-50%);
-  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1, #9791DB, #74BDCC, #59D2BF);
-  color: white;
-  width: 350px;
-  height: 400px;
+  top: 30%;
+  left: 37%;  width: 350px;
   padding: 20px;
+  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1);
   border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  height: 350px;
+  max-width: 350px;
+}
+
+.login-box .input-box input, .signup-box .input-box input{
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  color: #000;
   
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .login-box {
-    width: 250px;
-    right: 10px;
-    padding: 15px;
-  }
+.forget{
+  margin: 15px 0;
 }
 
-@media (max-width: 480px) {
-  .login-box {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: translateY(0);
-    margin: 20px auto;
-    width: 90%;
-    padding: 15px;
-  }
-}
-
-.login-box p{
- color:black;
-}
-
-.login-box .input-box{
+.log-box-btn, .sign-box-btn {
   width: 100%;
-  height: 50px;
-  margin: 30px 0px;
-}
-
-.input-box input{
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  margin: 30px 0px;
+  padding: 20px;
+  margin-top: 10px;
+  background: #fff;
+  color: #000;
   border: none;
-  outline: none;
-  border: 2px solid  black;
-  border-radius: 50px;
-  font-size: 16px;
-  color: white;
-  padding: 20px 45px 20px 20px;
-}
-
-.input-box input::placeholder{
-  color: white;
-}
-
-.login-box .forget{
-  font-size: 14.5px;
-  margin: 15px 0 15px;
-}
-
-.forget label input{
-  accent-color: white;
-  text-decoration: none;
-}
-
-.forget a{
-  color: white;
-  text-decoration: none;
-}
-
-.forget a:hover{
-  text-decoration: underline;
-}
-
-.login-box .log-box-btn{
-  width: 100%;
-  height: 45px;
-  background-color: white;
-  border: none;
-  outline: none;
-  border-radius: 40px;
-  color: black;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
+  margin-bottom: 15px;
 }
-
-.login-box .log-signup-link{
-  font-size: 14.5px;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.log-signup-link p a{
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.log-signup-link p a:hover{
-  text-decoration: underline;
-}
-
-/* sign up box */
 
 .signup-box {
-  position: absolute;
-  top: 50%;
-  right: 300px;
-  transform: translateY(-50%);
-  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1, #9791DB, #74BDCC, #59D2BF);
-  color: white;
+  position: fixed;
+  top: 30%;
+  left: 37%;
   width: 350px;
-  height: 450px;
   padding: 20px;
+  background: linear-gradient(135deg, #61ACEF, #9987ED, #B679E1,#9791DB,#74BDCC,#59D2BF);
   border-radius: 10px;
-  
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .signup-box {
-    width: 250px;
-    right: 10px;
-    padding: 15px;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .signup-box {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: translateY(0);
-    margin: 20px auto;
-    width: 90%;
-    padding: 15px;
-  }
-}
-
-.signup-box p{
-  color:black;
- }
-
-.signup-box .input-box{
-  width: 100%;
-  height: 50px;
-  margin: 30px 0px;
-} 
-
-.signup-box .sign-box-btn{
-  width: 100%;
-  height: 45px;
-  background-color: white;
-  border: none;
-  outline: none;
-  border-radius: 40px;
+.login-label {
+  text-align: left;
+  font-family: "inder";
+  font-size: 5vh;
   color: black;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  margin: 30px 0px;
+  transition: color 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
+
+
 
 /* Footer */
 .footer {
-  position: absolute; /* Fixed at the bottom-right */
-  bottom: 20px; /* Same as margin-bottom */
-  right: 20px; /* Same as margin-right */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 .bhi-logo {
-  width: 80px; /* Adjust size as needed */
-  height: auto;
+  width: 60px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .nav-btn {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .login-box, .signup-box {
+    width: 90%;
+  }
+
+  .welcome {
+    font-size: 1.5rem;
+  }
+
+  .welcomepara {
+    font-size: 0.9rem;
+  }
+
+  .letchat-button {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px;
+  }
+
+ 
 }

@@ -2,18 +2,11 @@ import React from "react";
 
 const Loginbox: React.FC = () => {
   return (
+
+    
     <div className="login-box">
-      <p
-        style={{
-          textAlign: "left",
-          fontFamily: "inder",
-          fontSize: "5vh",
-          color: "black",
-          fontWeight: "bold",
-        }}
-      >
-        login
-      </p>
+      <form>
+      <label className="login-label">login</label>
 
       <div className="input-box">
         <input type="text" placeholder="Username" required />
@@ -24,11 +17,11 @@ const Loginbox: React.FC = () => {
       </div>
 
       <div className="forget">
-        <label>
-          <input type="checkbox" />
+        
+          <input type="checkbox"/>
           <a href="#"> Forget password?</a>
-        </label>
-      </div>
+       
+      
 
       <button
         type="submit"
@@ -44,9 +37,13 @@ const Loginbox: React.FC = () => {
       <div className="log-signup-link">
         <p>
           Don't have an account?
-          <a href="#">sign up</a>
+          <a className="signlink" href="#">sign up</a>
         </p>
       </div>
+     </div> 
+
+
+      </form>
     </div>
   );
 };

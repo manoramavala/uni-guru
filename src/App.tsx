@@ -1,27 +1,50 @@
-import './App.css';
-import './index.css';
-import StarsCanvas from '../main/StarBackground'; 
-import Home from './component/Home.tsx'; 
-import Navigation from './component/Navigation.tsx';
-import Loginbox from './component/loginbox.tsx';
-import Signupbox from './component/Signupbox.tsx';
+import React, { useState } from "react";
+import Sidebar from "./Component/Sidebar";
+import ChatContainer from "./Component/ChatContainer";
+import Navigation from "./Component/Navigation";
+import "./index.css";
+import StarsCanvas from "../main/StarBackground";
+
 
 const App: React.FC = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Track sidebar state
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
-    <>
-      <div className='body' style={{backgroundColor:"#1B0725",height:"100vh",width:"100vw"}}>
-        <div >
-          <Navigation/>
-          <Home />
-          <Loginbox/>
-          <Signupbox/>
-          <StarsCanvas />
+
+  //   <div>
+  //   
+  //   <FontAwesomeIcon icon={faCat} />
+  //   <FontAwesomeIcon icon={faDog} />
+  //   <FontAwesomeIcon icon={faDragon} />
+  // </div>
+
+    <div className="flex flex-col h-screen bg-[#1B0725]">
+      <StarsCanvas />
+      {/* Navigation Bar */}
+      <div className="fixed top-0 left-0 w-full z-50">
+        <Navigation />
+      </div>
+
+      {/* Main Content */}
+      <div className="flex mt-20 h-[calc(100%-5rem)]">
+        {/* Sidebar */}
+        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+        {/* Chat Container */}
+        <div
+          className={`flex-1 overflow-hidden transition-all duration-300 ${
+            isSidebarOpen ? "ml-64" : "ml-0"
+          }`}
+        >
+          <ChatContainer />
         </div>
       </div>
-    </>
+    </div>
   );
-}
-// className="w-screen min-h-screen relative"
-// className="h-screen overflow-y-auto"
+};
+
 export default App;
