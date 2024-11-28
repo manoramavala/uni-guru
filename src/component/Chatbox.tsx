@@ -4,7 +4,7 @@ import ChatContainer from "./ChatContainer";
 
 const Chatbox: React.FC = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen ">
       <Sidebar />
       <ChatContainer />
     </div>

@@ -15,13 +15,6 @@ const App: React.FC = () => {
 
   return (
 
-  //   <div>
-  //   
-  //   <FontAwesomeIcon icon={faCat} />
-  //   <FontAwesomeIcon icon={faDog} />
-  //   <FontAwesomeIcon icon={faDragon} />
-  // </div>
-
     <div className="flex flex-col h-screen bg-[#1B0725]">
       <StarsCanvas />
       {/* Navigation Bar */}
@@ -30,7 +23,7 @@ const App: React.FC = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex mt-20 h-[calc(100%-5rem)]">
+      <div className="flex mt-20 h-[calc(100%-5rem)]" >
         {/* Sidebar */}
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
@@ -39,8 +32,7 @@ const App: React.FC = () => {
           className={`flex-1 overflow-hidden transition-all duration-300 ${
             isSidebarOpen ? "ml-64" : "ml-0"
           }`}
-        >
-          <ChatContainer />
+        > <ChatContainer />
         </div>
       </div>
     </div>
