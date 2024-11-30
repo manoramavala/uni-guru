@@ -29,11 +29,12 @@ const App: React.FC = () => {
 
         {/* Chat Container */}
         <div
-          className={`flex-1 overflow-hidden transition-all duration-300 ${
-            isSidebarOpen ? "ml-64" : "ml-0"
-          }`}
-        > <ChatContainer />
-        </div>
+      className={`flex-1 overflow-hidden transition-all duration-300 ${
+        isSidebarOpen ? "w-[calc(100%-16rem)]" : "w-full"
+      }`}
+    >
+      <ChatContainer />
+    </div>
       </div>
     </div>
   );

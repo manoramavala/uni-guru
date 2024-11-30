@@ -32,10 +32,10 @@ const StarBackground: React.FC<StarBackgroundProps> = (props) => {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled {...props}>
         <PointMaterial
           transparent
-          color="#ffffff" // Corrected color syntax from "$fff" to "#ffffff"
+          color="#ffffff" 
           size={0.0029}
           sizeAttenuation={true}
-          depthWrite={false} // Fixed property name from "dethWrite" to "depthWrite"
+          depthWrite={false}
         />
       </Points>
     </group>
