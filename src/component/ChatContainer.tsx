@@ -140,7 +140,7 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ isSidebarOpen }) => {
               </div>
             ))
           ) : (
-            <p className="text-gray-400 mt-5 ml-10">No messages yet. Start the conversation!</p>
+            <p className="text-gray-400 mt-10 ml-10">No messages yet. Start the conversation!</p>
           )}
           {/* Dummy element for scrolling */}
           <div ref={messagesEndRef} />

@@ -7,6 +7,7 @@ import {
   faEllipsis,
   faPen,
   faTrash,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 interface SidebarProps {
@@ -97,8 +98,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
         }}
       >
         <ul className="flex flex-col gap-4 p-5 flex-grow text-white">
-          {/* Dropdowns */}
+          
           <div className="relative">
+          <button
+    className="bg-blue-900 hover:bg-blue-800 p-3 rounded cursor-pointer w-full flex items-center justify-between mt-7"
+  >
+    <span>New Chat</span>
+    <FontAwesomeIcon
+      icon={faPlus}
+      className="text-gray-400 hover:text-white transition duration-300 ml-2"
+      size="lg"
+    />
+  </button>
+
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="bg-black hover:bg-gray-700 p-3 rounded cursor-pointer w-full text-left mt-7"

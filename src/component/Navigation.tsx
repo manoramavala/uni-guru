@@ -149,44 +149,53 @@ const Navigation: React.FC = () => {
         </div>
       </div>
 
-      {/* Guru Customization Box */}
-      {customizeGuruOpen && (
-        <div
-          ref={guruBoxRef}
-          className="absolute top-20 right-5 bg-gray-800 text-white rounded border border-white shadow-lg p-4 z-50 w-72"
-        >
-          <h3 className="text-lg font-bold mb-3">Customize Guru</h3>
-          <div className="mb-2">
-            <label className="block text-sm mb-1">Name</label>
-            <input
-              type="text"
-              className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
-            />
-          </div>
-          <div className="mb-2">
-            <label className="block text-sm mb-1">Subject</label>
-            <input
-              type="text"
-              className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
-            />
-          </div>
-          <div className="mb-2">
-            <label className="block text-sm mb-1">Description</label>
-            <textarea
-              className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
-              rows={3}
-            ></textarea>
-          </div>
-          <div className="flex justify-end">
-  <button
-    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-    onClick={() => setCustomizeGuruOpen(false)}
+      {/* Background Overlay */}
+{customizeGuruOpen && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
+)}
+
+{/* Guru Customization Box */}
+{customizeGuruOpen && (
+  <div
+    ref={guruBoxRef}
+    className="fixed inset-0 flex justify-center items-center z-50"
   >
-    Create
-  </button>
-</div>
-        </div>
-      )}
+    <div className="bg-transparent text-white rounded border border-white shadow-lg p-4 w-72">
+      <h3 className="text-lg font-bold mb-3">Customize Guru</h3>
+      <div className="mb-2">
+        <label className="block text-sm mb-1">Name</label>
+        <input
+          type="text"
+          className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
+        />
+      </div>
+      <div className="mb-2">
+        <label className="block text-sm mb-1">Subject</label>
+        <input
+          type="text"
+          className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
+        />
+      </div>
+      <div className="mb-2">
+        <label className="block text-sm mb-1">Description</label>
+        <textarea
+          className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
+          rows={3}
+        ></textarea>
+      </div>
+      <div className="flex justify-end">
+        <button
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          onClick={() => setCustomizeGuruOpen(false)}
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+      
     </div>
   );
 };
