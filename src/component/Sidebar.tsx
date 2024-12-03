@@ -1,14 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faTimes,
-  faGear,
-  faEllipsis,
-  faPen,
-  faTrash,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes, faGear, faEllipsis, faPen, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 interface SidebarProps {
   isSidebarOpen: boolean;
@@ -17,9 +9,9 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [activeConversation, setActiveConversation] = useState<number | null>(0); // Keep conversation open by default
   const [activeEllipsis, setActiveEllipsis] = useState<number | null>(null);
+  const [ellipsisPosition, setEllipsisPosition] = useState<{ top: number; left: number } | null>(null);
   const ellipsisRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   // Resize handler
@@ -31,25 +23,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
     };
   }, []);
 
-  // Close dropdowns when clicking outside
+  // Close ellipsis options when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
-
-      if (
-        isDropdownOpen &&
-        !document.querySelector(".select-guru-dropdown")?.contains(target)
-      ) {
-        setIsDropdownOpen(false);
-      }
-
-      if (
-        isHistoryOpen &&
-        !document.querySelector(".history-dropdown")?.contains(target)
-      ) {
-        setIsHistoryOpen(false);
-      }
-
       if (
         activeEllipsis !== null &&
         !ellipsisRefs.current.some(
@@ -57,6 +34,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
         )
       ) {
         setActiveEllipsis(null);
+        setEllipsisPosition(null);
       }
     };
 
@@ -64,7 +42,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isDropdownOpen, isHistoryOpen, activeEllipsis]);
+  }, [activeEllipsis]);
+
+  const handleEllipsisClick = (event: React.MouseEvent, index: number) => {
+    const rect = (event.target as HTMLElement).getBoundingClientRect();
+    setEllipsisPosition({
+      top: rect.top + window.scrollY,  // Get the top position of the button relative to the document
+      left: rect.left + window.scrollX, // Get the left position of the button relative to the document
+    });
+    setActiveEllipsis(index);
+  };
 
   return (
     <>
@@ -98,79 +85,65 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
         }}
       >
         <ul className="flex flex-col gap-4 p-5 flex-grow text-white">
-          
-          <div className="relative">
+          {/* New Chat Button */}
           <button
-    className="bg-blue-900 hover:bg-blue-800 p-3 rounded cursor-pointer w-full flex items-center justify-between mt-7"
-  >
-    <span>New Chat</span>
-    <FontAwesomeIcon
-      icon={faPlus}
-      className="text-gray-400 hover:text-white transition duration-300 ml-2"
-      size="lg"
-    />
-  </button>
+            className="bg-blue-900 hover:bg-blue-800 p-3 rounded cursor-pointer w-full flex items-center justify-between mt-7"
+          >
+            <span>New Chat</span>
+            <FontAwesomeIcon
+              icon={faPlus}
+              className="text-gray-400 hover:text-white transition duration-300 ml-2"
+              size="lg"
+            />
+          </button>
 
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="bg-black hover:bg-gray-700 p-3 rounded cursor-pointer w-full text-left mt-7"
-            >
-              Select Guru
-            </button>
-            {isDropdownOpen && (
-              <div className="absolute top-full left-0 bg-gray-800 rounded mt-1 w-full z-50 select-guru-dropdown">
-                <ul>
-                  <li className="hover:bg-gray-700 p-3 rounded cursor-pointer">Guru 1</li>
-                  <li className="hover:bg-gray-700 p-3 rounded cursor-pointer">Guru 2</li>
-                  <li className="hover:bg-gray-700 p-3 rounded cursor-pointer">Guru 3</li>
-                </ul>
-              </div>
-            )}
-          </div>
-          {/* History */}
-          <div className="relative">
-            <button
-              onClick={() => setIsHistoryOpen(!isHistoryOpen)}
-              className="bg-black hover:bg-gray-700 p-3 rounded cursor-pointer w-full text-left"
-            >
-              History
-            </button>
-            {isHistoryOpen && (
-              <div className="mt-2 bg-gray-800 rounded p-3 history-dropdown">
-                <ul className="text-sm">
-                  {[...Array(3)].map((_, index) => (
-                    <li
-                      key={index}
-                      className="hover:bg-gray-700 p-2 rounded cursor-pointer flex justify-between items-center"
+          {/* Conversations List */}
+          {activeConversation !== null && (
+            <div className="mt-2 bg-gray-800 rounded p-3">
+              <ul className="text-sm">
+                {[...Array(3)].map((_, index) => (
+                  <li
+                    key={index}
+                    className="hover:bg-gray-700 p-2 rounded cursor-pointer flex justify-between items-center"
+                  >
+                    <span>Conversation {index + 1}</span>
+                    <button
+                      onClick={(event) => handleEllipsisClick(event, index)}
+                      className="text-white hover:text-gray-400 ml-2"
                     >
-                      <span>Conversation {index + 1}</span>
-                      <button
-                        onClick={() => setActiveEllipsis(index)}
-                        className="text-white hover:text-gray-400 ml-2"
-                      >
-                        <FontAwesomeIcon icon={faEllipsis} size="lg" />
-                      </button>
-                      {activeEllipsis === index && (
-                        <div
-                          ref={(ref) => (ellipsisRefs.current[index] = ref)}
-                          className="absolute right-0 mt-2 bg-gray-800 rounded p-2 z-50 border border-[#ffffff]"
-                        >
-                          <ul>
-                            <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-                              <FontAwesomeIcon icon={faPen} size="lg" /> Edit
-                            </li>
-                            <li className="hover:bg-gray-700 p-2 rounded cursor-pointer">
-                              <FontAwesomeIcon icon={faTrash} size="lg" /> Delete
-                            </li>
-                          </ul>
-                        </div>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
+                      <FontAwesomeIcon icon={faEllipsis} size="lg" />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Ellipsis Options (Edit/Delete) */}
+          {activeEllipsis !== null && ellipsisPosition && (
+            <div
+              ref={(ref) => (ellipsisRefs.current[activeEllipsis] = ref)}
+              className="absolute bg-gray-800 h-20 w-15 rounded p-2 z-50 border border-white"
+              style={{
+                top: ellipsisPosition.top - 100,  // Adjust for dropdown placement
+                left: ellipsisPosition.left + 50, // Align it next to the ellipsis button
+                maxHeight: "calc(100vh - 100px)", // Ensure it doesn’t go beyond the screen height
+              }}
+            >
+              <ul>
+                <li className="flex items-center gap-2 hover:bg-gray-700 p-2 rounded cursor-pointer">
+                  <FontAwesomeIcon icon={faPen} size="lg" />
+                  <span>Edit</span>
+                </li>
+                <li className="flex items-center gap-2 hover:bg-gray-700 p-2 rounded cursor-pointer">
+                  <FontAwesomeIcon icon={faTrash} size="lg" />
+                  <span>Delete</span>
+                </li>
+              </ul>
+            </div>
+          )}
+
+          {/* Settings */}
           <div className="mt-auto mb-4 text-center hover:bg-gray-700 p-3 rounded cursor-pointer text-white">
             <FontAwesomeIcon icon={faGear} size="lg" />
             Settings

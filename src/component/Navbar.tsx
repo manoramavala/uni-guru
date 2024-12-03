@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import uniguru from "../assets/unip-removebg-preview.png";
 import userimage from "../assets/userimage.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faChevronDown,faTimes,faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation: React.FC = () => {
+  const toggleUniguruDropdown = () => setUniguruDropdownOpen((prev) => !prev);
+
+  const [uniguruDropdownOpen, setUniguruDropdownOpen] = useState(false);
   const [scapperDropdownOpen, setScapperDropdownOpen] = useState(false);
   const [selectModelDropdownOpen, setSelectModelDropdownOpen] = useState(false);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [customizeGuruOpen, setCustomizeGuruOpen] = useState(false);
 
+  const uniguruRef = useRef<HTMLDivElement | null>(null);
   const scapperRef = useRef<HTMLDivElement | null>(null);
   const selectModelRef = useRef<HTMLDivElement | null>(null);
   const userRef = useRef<HTMLDivElement | null>(null);
@@ -24,6 +30,13 @@ const Navigation: React.FC = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
+      if (
+        uniguruDropdownOpen &&
+        uniguruRef.current &&
+        !uniguruRef.current.contains(target)
+      ) {
+        setUniguruDropdownOpen(false);
+      }
       if (scapperRef.current && !scapperRef.current.contains(target)) {
         setScapperDropdownOpen(false);
       }
@@ -50,12 +63,39 @@ const Navigation: React.FC = () => {
   return (
     <div className="w-full fixed top-3 z-50">
       <div className="flex items-center justify-between w-full h-25 px-5 sm:px-3">
-        <div className="flex items-center space-x-3">
-          <img src={uniguru} alt="uni-img" className="w-16 h-auto" />
-          <p className="text-2xl font-bold text-transparent bg-gradient-to-r from-[#896700] via-[#ffbf00] to-[#896700] bg-clip-text">
-            UNIGURU
-          </p>
-        </div>
+      <div className="flex items-center space-x-3">
+  <img src={uniguru} alt="uni-img" className="w-16 h-auto" />
+  <button className="text-2xl ml-none font-bold text-transparent bg-gradient-to-r from-[#896700] via-[#ffbf00] to-[#896700] bg-clip-text flex items-center group"
+  onClick={toggleUniguruDropdown}
+  >
+    UNIGURU
+    {/* Chevron icon visible only on hover */}
+    <FontAwesomeIcon
+      icon={faChevronDown}
+      className="text-white ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+      style={{ fontSize: '15px' }}
+    />
+  </button>
+  {/* UNIGURU Dropdown */}
+  {uniguruDropdownOpen && (
+  <div className="absolute top-full left-16 bg-black text-white rounded border border-white items-center rounded mt-1 w-48 sm:bg-transparent justify-between">
+    <ul>
+      <li className="hover:bg-gray-700 p-3 rounded cursor-pointer flex justify-between">
+        Guru 1 <span className="space-x-2"><FontAwesomeIcon icon={faTimes} /><FontAwesomeIcon icon={faTrash} /></span>
+      </li>
+      <li className="hover:bg-gray-700 p-3 rounded cursor-pointer flex justify-between">
+        Guru 2 <span className="space-x-2"><FontAwesomeIcon icon={faTimes} /><FontAwesomeIcon icon={faTrash} /></span>
+      </li>
+      <li className="hover:bg-gray-700 p-3 rounded cursor-pointer flex justify-between">
+        Guru 3 <span className="space-x-2"><FontAwesomeIcon icon={faTimes} /><FontAwesomeIcon icon={faTrash} /></span>
+      </li>
+    </ul>
+  </div>
+)}
+
+
+</div>
+
 
         <div className="flex items-center space-x-5 relative">
           {/* Tool Button for Small Devices */}

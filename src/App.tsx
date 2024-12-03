@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "./Component/Sidebar";
 import ChatContainer from "./Component/ChatContainer";
-import Navigation from "./Component/Navigation";
+import Navigation from "./Component/Navbar";
 import "./index.css";
 import StarsCanvas from "../main/StarBackground";
 
